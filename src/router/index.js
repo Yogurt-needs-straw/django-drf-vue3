@@ -16,19 +16,19 @@ const routes = [
         path: 'basic',
         name: 'basic',
         component: () => import('../views/admin/BasicView.vue'),
-        mate:{role:["admin","user","manager"]},
+        mate:{role:["admin","user","manager"], title:"基本配置", is_menu:true}
       },
       {
         path: 'user',
         name: 'user',
         component: () => import('../views/admin/UserView.vue'),
-        mate:{role:["admin","manager"]},
+        mate:{role:["admin","manager"], title:"用户管理", is_menu:true}
       },
       {
         path: 'order',
         name: 'order',
         component: () => import('../views/admin/OrderView.vue'),
-        mate:{role:["admin","user"]},
+        mate:{role:["admin","user"], title:"订单管理", is_menu:true}
       },
     ]
   }
@@ -47,7 +47,7 @@ router.beforeEach((to,from,next)=>{
     // 获取当前vuex中自己的角色
     // to.mate.role就是允许的角色列表
     let userRole = store.state.role;
-    let allowRoleList = to.mate.role;
+    let allowRoleList = to.meta.role;
 
     if(allowRoleList.indexOf(userRole) === -1) {
       next({name:"login"});
