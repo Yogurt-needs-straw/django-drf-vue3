@@ -6,7 +6,6 @@
           item.meta.title
         }}
       </router-link>
-<!--      <router-link :to="{name:'user'}">xxx</router-link>-->
     </div>
     <div class="right-content" style="flex-grow: 1">
       <router-view></router-view>
@@ -18,16 +17,16 @@
 
 import {computed} from 'vue'
 import {useRouter} from "vue-router";
+import {useStore} from "vuex";
 
 const router = useRouter();
+const store = useStore();
 const routerList = computed(()=>{
   let totalRouteList = router.getRoutes();
-  console.log(router.getRoutes());
+  // console.log(router.getRoutes());
   return totalRouteList.filter(item =>{
-    if (item.meta.is_menu) {
+    if (item.meta.is_menu && item.meta.role.indexOf(store.state.role)!== -1){
       return true;
-    }else {
-      console.log("error");
     }
   })
 });

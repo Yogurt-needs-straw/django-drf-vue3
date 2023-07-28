@@ -15,20 +15,23 @@ const routes = [
       {
         path: 'basic',
         name: 'basic',
+        meta: {role: ["admin","user","manager"], title: "基本配置", is_menu: true},
         component: () => import('../views/admin/BasicView.vue'),
-        mate:{role:["admin","user","manager"], title:"基本配置", is_menu:true}
+
       },
       {
         path: 'user',
         name: 'user',
+        meta: {role: ["admin","manager"], title: "用户管理", is_menu: true},
         component: () => import('../views/admin/UserView.vue'),
-        mate:{role:["admin","manager"], title:"用户管理", is_menu:true}
+
       },
       {
         path: 'order',
         name: 'order',
+        meta: {role: ["admin","user"], title: "订单管理", is_menu: true},
         component: () => import('../views/admin/OrderView.vue'),
-        mate:{role:["admin","user"], title:"订单管理", is_menu:true}
+
       },
     ]
   }
